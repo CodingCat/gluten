@@ -17,7 +17,6 @@
 
 cmake_minimum_required(VERSION 3.16)
 message(STATUS "Building using CMake version: ${CMAKE_VERSION}")
-include_directories(/src/gluten/ep/build-arrow/build/arrow_install/include)
 # The set(CACHE) command does not remove any normal variable of the same name from the current scope
 # https://cmake.org/cmake/help/latest/policy/CMP0126.html
 if(POLICY CMP0126)
