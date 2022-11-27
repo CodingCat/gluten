@@ -4,9 +4,12 @@ import io.glutenproject.GlutenConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -26,11 +29,28 @@ public class JniWorkspace {
       Path root = Paths.get(rootDir);
       Path created = Files.createTempDirectory(root, "spark_columnar_plugin_");
       this.workDir = created.toAbsolutePath().toString();
+      this.copyExtraLibs();
       this.jniLibLoader = new JniLibLoader(workDir);
       this.jniResourceHelper = new JniResourceHelper(workDir);
       LOG.info("JNI workspace {} created in root directory {}", workDir, rootDir);
     } catch (Exception e) {
       throw new RuntimeException(e);
+    }
+  }
+
+  private void copyExtraLibs() throws IOException {
+    try {
+      File libDirs = new File("/usr/local/lib64");
+      File[] allLibs = libDirs.listFiles();
+      for (int i = 0; i < allLibs.length; i++) {
+        File lib = allLibs[i];
+        String dst = this.workDir + "/" + lib.getName();
+        LOG.info("copying " + lib.getPath() + " to " + dst);
+        Files.copy(Paths.get(lib.getPath()), Paths.get(dst), StandardCopyOption.REPLACE_EXISTING);
+      }
+    } catch (IOException ioe){
+      LOG.error("cannot copy existing libs to workspace", ioe);
+      throw ioe;
     }
   }
 
