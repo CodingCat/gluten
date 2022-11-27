@@ -30,11 +30,20 @@ public class JniWorkspace {
       Path created = Files.createTempDirectory(root, "spark_columnar_plugin_");
       this.workDir = created.toAbsolutePath().toString();
       this.copyExtraLibs();
+      this.listFiles();
       this.jniLibLoader = new JniLibLoader(workDir);
       this.jniResourceHelper = new JniResourceHelper(workDir);
       LOG.info("JNI workspace {} created in root directory {}", workDir, rootDir);
     } catch (Exception e) {
       throw new RuntimeException(e);
+    }
+  }
+
+  private void listFiles() {
+    File libDirs = new File(this.workDir);
+    File[] allLibs = libDirs.listFiles();
+    for (int i = 0; i < allLibs.length; i++) {
+      System.out.println(allLibs[i].getAbsolutePath());
     }
   }
 
