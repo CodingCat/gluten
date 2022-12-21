@@ -76,6 +76,7 @@ TARGET_BUILD_COMMIT=$(git rev-parse --verify HEAD)
 mkdir -p cpp/build
 pushd cpp/build
 cmake -G Ninja \
+	-DCMAKE_CXX_FLAGS="-stdlib=libc++ -std=c++17 -fPIC" \
         -DARROW_BUILD_STATIC=OFF \
         -DARROW_COMPUTE=ON \
         -DARROW_WITH_RE2=ON \
