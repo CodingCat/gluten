@@ -138,7 +138,8 @@ function compile {
     if [[ "$LINUX_DISTRIBUTION" == "ubuntu" ]]; then
       scripts/setup-ubuntu.sh
     else # Assume CentOS
-      scripts/setup-centos8.sh
+      #scripts/setup-centos8.sh
+      echo "IGNORE\n"
     fi
     COMPILE_OPTION="-DVELOX_ENABLE_PARQUET=ON -DVELOX_BUILD_TESTING=OFF -DVELOX_ENABLE_DUCKDB=OFF -DVELOX_BUILD_TEST_UTILS=ON -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_CXX_FLAGS=\"-stdlib=libc++ -std=c++17\" -DVELOX_CODEGEN_SUPPORT=OFF"
     if [ $ENABLE_HDFS == "ON" ]; then
