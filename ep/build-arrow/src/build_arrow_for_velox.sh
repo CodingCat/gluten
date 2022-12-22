@@ -69,7 +69,7 @@ popd
 mkdir -p cpp/build
 pushd cpp/build
 cmake -G Ninja \
-	-DCMAKE_CXX_FLAGS="-stdlib=libc++ -std=c++17 -fPIC" \
+	-DCMAKE_CXX_FLAGS="-fPIC" \
         -DARROW_BUILD_STATIC=OFF \
         -DARROW_COMPUTE=ON \
         -DARROW_WITH_RE2=ON \
