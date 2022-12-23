@@ -72,6 +72,10 @@ function checkout_code {
   if [ $ENABLE_EP_CACHE == "OFF" ]; then
     git clean -dfx
   fi
+
+  cd third_party/googletest;
+  git checkout release-1.12.1
+  cd -
 }
 
 echo "Velox-get start..."
