@@ -63,6 +63,11 @@ function checkout_code {
   #sync submodules
   git submodule sync --recursive
   git submodule update --init --recursive
+
+
+  cd third_party/googletest;
+  git checkout release-1.12.1
+  cd -
 }
 
 echo "Velox-get start..."
