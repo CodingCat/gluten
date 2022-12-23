@@ -425,7 +425,7 @@ case class GlutenHashAggregateExecTransformer(
     resRel
   }
 
-  override def isStreaming: Boolean = false
+  def isStreaming: Boolean = false
 
   def numShufflePartitions: Option[Int] = Some(0)
 
