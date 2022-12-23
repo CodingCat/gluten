@@ -46,5 +46,10 @@ git checkout $TARGET_BUILD_COMMIT
 git submodule sync --recursive
 git submodule update --init --recursive
 
+# enforce velox to use google test 1.12.1
+cd third_party/googletest;
+git checkout release-1.12.1
+cd -
+
 echo "Velox get finished."
 
