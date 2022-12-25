@@ -81,10 +81,23 @@ public class JniLibLoader {
     this.workDir = workDir;
   }
 
+  private static void runLDD(String libPath) {
+    try {
+      System.out.println("run ldd on " + libPath);
+      ProcessBuilder pb = new ProcessBuilder();
+      pb.inheritIO().command("ldd", libPath);
+      Process process = pb.start();
+      process.waitFor();
+    } catch (Exception e){
+      LOG.error("error when running ldd", e);
+    }
+  }
+
   private static synchronized void loadFromPath0(String libPath, boolean requireUnload) {
     if (LOADED_LIBRARY_PATHS.contains(libPath)) {
       LOG.debug("Library in path {} has already been loaded, skipping", libPath);
     } else {
+      runLDD(libPath);
       System.load(libPath);
       LOADED_LIBRARY_PATHS.add(libPath);
       LOG.info("Library {} has been loaded using path-loading method", libPath);
