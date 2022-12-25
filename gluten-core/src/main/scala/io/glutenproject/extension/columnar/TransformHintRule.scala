@@ -87,7 +87,7 @@ object TagBeforeTransformHits {
 
 case class StoreExpandGroupExpression() extends  Rule[SparkPlan] {
   override def apply(plan: SparkPlan): SparkPlan = plan.transformUp {
-  case agg: HashAggregateExec if agg.child.isInstanceOf[ExpandExec] =>
+    case agg: HashAggregateExec if agg.child.isInstanceOf[ExpandExec] =>
       val childExpandExec = agg.child.asInstanceOf[ExpandExec]
       agg.copy(child = CustomExpandExec(
         childExpandExec.projections, agg.groupingExpressions,
