@@ -84,6 +84,7 @@ public class JniLibLoader {
   private static void runLDD(String libPath) {
     try {
       System.out.println("run ldd on " + libPath);
+      System.out.println("LD_LIBRARY_PATH:" + System.getenv().getOrDefault("LD_LIBRARY_PATH", "EMPTY"));
       ProcessBuilder pb = new ProcessBuilder();
       pb.inheritIO().command("ldd", libPath);
       Process process = pb.start();
