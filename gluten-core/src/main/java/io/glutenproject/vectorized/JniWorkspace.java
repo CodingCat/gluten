@@ -29,7 +29,6 @@ public class JniWorkspace {
       Path root = Paths.get(rootDir);
       Path created = Files.createTempDirectory(root, "spark_columnar_plugin_");
       this.workDir = created.toAbsolutePath().toString();
-      this.copyExtraLibs();
       this.listFiles();
       this.jniLibLoader = new JniLibLoader(workDir);
       this.jniResourceHelper = new JniResourceHelper(workDir);
@@ -44,22 +43,6 @@ public class JniWorkspace {
     File[] allLibs = libDirs.listFiles();
     for (int i = 0; i < allLibs.length; i++) {
       System.out.println(allLibs[i].getAbsolutePath());
-    }
-  }
-
-  private void copyExtraLibs() throws IOException {
-    try {
-      File libDirs = new File("/usr/local/lib64");
-      File[] allLibs = libDirs.listFiles();
-      for (int i = 0; i < allLibs.length; i++) {
-        File lib = allLibs[i];
-        String dst = this.workDir + "/" + lib.getName();
-        LOG.info("copying " + lib.getPath() + " to " + dst);
-        Files.copy(Paths.get(lib.getPath()), Paths.get(dst), StandardCopyOption.REPLACE_EXISTING);
-      }
-    } catch (IOException ioe){
-      LOG.error("cannot copy existing libs to workspace", ioe);
-      throw ioe;
     }
   }
 
