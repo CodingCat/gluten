@@ -16,8 +16,17 @@
  */
 
 #include <jni.h>
-#include <malloc.h>
 #include <filesystem>
+#if __linux__
+  #include <malloc.h>
+#endif
+#include <stdlib.h>
+
+
+#include <iostream>
+#include <memory>
+#include <string>
+#include <utility>
 
 #include "compute/Backend.h"
 #include "compute/ProtobufUtils.h"
