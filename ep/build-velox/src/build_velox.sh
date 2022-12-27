@@ -14,7 +14,8 @@ VELOX_REPO=https://github.com/CodingCat/velox-intel.git
 VELOX_BRANCH=main
 TARGET_BUILD_COMMIT=""
 
-LINUX_DISTRIBUTION=$(. /etc/os-release && echo ${ID})
+#LINUX_DISTRIBUTION=$(. /etc/os-release && echo ${ID})
+LINUX_DISTRIBUTION=Darwin
 
 for arg in "$@"
 do
@@ -119,12 +120,13 @@ if [ ! -d $VELOX_HOME ]; then
 fi
 
 function process_script {
-    sed -i 's/^  ninja -C "${BINARY_DIR}" install/  sudo ninja -C "${BINARY_DIR}" install/g' scripts/setup-helper-functions.sh
-    sed -i 's/-mavx2 -mfma -mavx -mf16c -mlzcnt -std=c++17/-march=native -std=c++17 -mno-avx512f/g' scripts/setup-helper-functions.sh
+    sed -i "" 's/^  ninja -C ${BINARY_DIR} install/  sudo ninja -C ${BINARY_DIR} install/g' scripts/setup-helper-functions.sh
+    sed -i "" 's/-mavx2 -mfma -mavx -mf16c -mlzcnt -std=c++17/-march=native -std=c++17 -mno-avx512f/g' scripts/setup-helper-functions.sh
     if [[ "$LINUX_DISTRIBUTION" == "ubuntu" ]]; then
       process_setup_ubuntu
     else # Assume CentOS
-      process_setup_centos8
+      #process_setup_centos8
+      echo "ignore!"
     fi
 }
 
