@@ -688,7 +688,7 @@
     </plugins>
   </reporting>
   <repositories>
-    <repository>
+	      <repository>
       <id>Kyligence</id>
       <name>Kyligence Repository</name>
       <url>https://repository.kyligence.io/repository/maven-public/
@@ -699,6 +699,6 @@
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
-    </repository>
+	  </repository>
   </repositories>
 </project>

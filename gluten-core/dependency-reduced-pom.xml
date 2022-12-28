@@ -171,15 +171,13 @@
         </dependency>
       </dependencies>
       <properties>
+        <os.detected.release.version>22.04</os.detected.release.version>
+        <os.detected.release.like.ubuntu>true</os.detected.release.like.ubuntu>
+        <os.detected.release>ubuntu</os.detected.release>
         <os.detected.name>linux</os.detected.name>
-        <os.detected.arch>x86_64</os.detected.arch>
-        <os.detected.release.like.rhel>true</os.detected.release.like.rhel>
-        <os.detected.release.version>2</os.detected.release.version>
+        <os.detected.release.like.debian>true</os.detected.release.like.debian>
         <os.detected.classifier>linux-x86_64</os.detected.classifier>
-        <os.detected.release.like.centos>true</os.detected.release.like.centos>
-        <os.detected.release.like.amzn>true</os.detected.release.like.amzn>
-        <os.detected.release.like.fedora>true</os.detected.release.like.fedora>
-        <os.detected.release>amzn</os.detected.release>
+        <os.detected.arch>x86_64</os.detected.arch>
       </properties>
     </profile>
     <profile>
