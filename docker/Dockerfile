@@ -5,7 +5,7 @@ USER root
 RUN apt-get update
 RUN apt install -y software-properties-common
 RUN apt install -y maven build-essential cmake libssl-dev libre2-dev libcurl4-openssl-dev clang lldb lld libz-dev git ninja-build uuid-dev wget sudo openjdk-8-jdk default-jdk vim
-RUN apt install -y ccache ninja-build checkinstall libssl-dev libboost-all-dev libdouble-conversion-dev libgoogle-glog-dev libbz2-dev libgflags-dev libgmock-dev libevent-dev liblz4-dev libzstd-dev libre2-dev libsnappy-dev  liblzo2-dev bison flex tzdata wget
+RUN apt install -y ccache ninja-build checkinstall libssl-dev libboost-all-dev libdouble-conversion-dev libgoogle-glog-dev libbz2-dev libgflags-dev libgmock-dev libevent-dev liblz4-dev libzstd-dev libre2-dev libsnappy-dev  liblzo2-dev bison flex wget
 
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 ENV PATH=$JAVA_HOME/bin:$PATH
