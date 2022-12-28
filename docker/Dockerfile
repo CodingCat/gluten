@@ -13,5 +13,10 @@ ENV PATH=$JAVA_HOME/bin:$PATH
 
 RUN wget https://archive.apache.org/dist/spark/spark-3.2.0/spark-3.2.0-bin-hadoop3.2.tgz
 RUN tar -zxvf spark-3.2.0-bin-hadoop3.2.tgz
+ENV PATH=/spark-3.2.0-bin-hadoop3.2/bin:$PATH
 
+
+RUN ln -fs /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
+RUN dpkg --configure -a
  
