@@ -59,7 +59,9 @@ trait BasicScanExecTransformer extends TransformSupport {
     val planNode =
       PlanBuilder.makePlan(substraitContext, Lists.newArrayList(transformContext.root), outNames)
     val fileFormat = ConverterUtils.getFileFormat(this)
-
+    // scalastyle:off
+    println("execute this")
+    // scalastyle:on
     BackendsApiManager.getIteratorApiInstance.genNativeFileScanRDD(
       sparkContext,
       WholestageTransformContext(outputAttributes(),

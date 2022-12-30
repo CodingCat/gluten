@@ -179,6 +179,8 @@ class FileSourceScanExecTransformer(@transient relation: HadoopFsRelation,
   }
 
   override def doValidate(): Boolean = {
+    // scalastyle:off
+    println("executing FileSourceScanExec.doValidate")
     if (BackendsApiManager.getTransformerApiInstance.supportsReadFileFormat(relation.fileFormat)) {
       super.doValidate()
     } else {

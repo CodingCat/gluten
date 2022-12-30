@@ -233,20 +233,27 @@ case class AddTransformHintRule() extends Rule[SparkPlan] {
       return
     }
     try {
+      // scalastyle:off
+      println("executing AddTransformHintRule")
       if (BackendsApiManager.getSettings.fallbackOnEmptySchema()) {
+        println("executing fallbackOnEmptySchema")
         if (plan.output.isEmpty) {
           // Some backends are not eligible to offload zero-column plan so far
           TransformHints.tagNotTransformable(plan)
+          println("executing plan.output.isEmpty")
           return
         }
         if (plan.children.exists(_.output.isEmpty)) {
           // Some backends are also not eligible to offload plan within zero-column input so far
           TransformHints.tagNotTransformable(plan)
+          println("plan.children.exists(_.output.isEmpty)")
           return
         }
       }
       plan match {
         case plan: BatchScanExec =>
+          // scalastyle:off
+          println("executing BatchScanExec")
           if (!enableColumnarBatchScan) {
             TransformHints.tagNotTransformable(plan)
           } else {
@@ -255,6 +262,7 @@ case class AddTransformHintRule() extends Rule[SparkPlan] {
             TransformHints.tag(plan, transformer.doValidate().toTransformHint)
           }
         case plan: FileSourceScanExec =>
+          println("executing FileSourceScanExec")
           if (!enableColumnarFileScan) {
             TransformHints.tagNotTransformable(plan)
           } else {
