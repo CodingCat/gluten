@@ -10,6 +10,30 @@
   <artifactId>velox-package</artifactId>
   <packaging>pom</packaging>
   <name>Velox Package</name>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.4.1</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <relocations>
+                <relocation>
+                  <pattern>com.google.protobuf</pattern>
+                  <shadedPattern>shaded.com.google.protobuf</shadedPattern>
+                </relocation>
+              </relocations>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
   <profiles>
     <profile>
       <id>spark-3.2</id>
@@ -17,15 +41,9 @@
         <module>spark32</module>
       </modules>
       <properties>
-        <os.detected.name>linux</os.detected.name>
+        <os.detected.name>osx</os.detected.name>
+        <os.detected.classifier>osx-x86_64</os.detected.classifier>
         <os.detected.arch>x86_64</os.detected.arch>
-        <os.detected.release.like.rhel>true</os.detected.release.like.rhel>
-        <os.detected.release.version>2</os.detected.release.version>
-        <os.detected.classifier>linux-x86_64</os.detected.classifier>
-        <os.detected.release.like.centos>true</os.detected.release.like.centos>
-        <os.detected.release.like.amzn>true</os.detected.release.like.amzn>
-        <os.detected.release.like.fedora>true</os.detected.release.like.fedora>
-        <os.detected.release>amzn</os.detected.release>
       </properties>
     </profile>
     <profile>
