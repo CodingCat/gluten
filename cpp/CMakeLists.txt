@@ -76,6 +76,11 @@ add_compile_options(-Wno-error=parentheses)
 add_compile_options(-Wno-error=unused-function)
 add_compile_options(-Wno-error=unused-variable)
 add_compile_options(-Wno-error=unused-but-set-variable)
+add_compile_options(-Wno-error=unused-result)
+add_compile_options(-Wno-error=nullability-completeness)
+add_compile_options(-Wno-error=potentially-evaluated-expression)
+add_compile_options(-Wno-error=mismatched-tags)
+add_compile_options(-Wno-error=string-plus-int)
 
 #
 # Dependencies
